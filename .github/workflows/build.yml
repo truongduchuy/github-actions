@@ -20,5 +20,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: |
+          npm config set //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
           npm ci
-          npm run test
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
